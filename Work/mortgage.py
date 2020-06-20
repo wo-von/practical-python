@@ -26,6 +26,7 @@ while principal > 0:
         principal = principal * ( 1 + rate/12) - payment
         totalPaid += payment
     monthCounter += 1
+    print(monthCounter, round(totalPaid,2), round(principal,2))
 
 totalPaid = round(totalPaid, 2)
 print("total amount paid is", totalPaid, "and it was paid over",monthCounter,"months")
