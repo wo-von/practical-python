@@ -13,9 +13,13 @@ def portfolio_cost(filename):
         for line in f:
             line = line.strip()
             stockData.append(line.split(','))
+            
     totalCost = 0
     for item in stockData:
-        totalCost += int(item[1]) * float(item[2])
+        try:
+            totalCost += int(item[1]) * float(item[2])
+        except:
+            continue
     return totalCost
 
 cost = portfolio_cost('Data/portfolio.csv')
