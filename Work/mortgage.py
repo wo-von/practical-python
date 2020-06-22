@@ -35,7 +35,7 @@ while principal > 0:
             totalPaid += payment
     monthCounter += 1
     # Use sting formating from 01/04  to better align the floating numbers and force a decimal number
-    print(monthCounter, f'{round(totalPaid,2):0.2f}', f'{round(principal,2):0.2f}')
+    print(monthCounter, f'{totalPaid:<.2f}', f'{principal:<.2f}')
 
 totalPaid = round(totalPaid, 2)
 print("total amount paid is", totalPaid, "and it was paid over",monthCounter,"months")
