@@ -34,7 +34,8 @@ while principal > 0:
             principal = principal * ( 1 + rate/12) - payment
             totalPaid += payment
     monthCounter += 1
-    print(monthCounter, round(totalPaid,2), round(principal,2))
+    # Use sting formating from 01/04  to better align the floating numbers and force a decimal number
+    print(monthCounter, f'{round(totalPaid,2):0.2f}', f'{round(principal,2):0.2f}')
 
 totalPaid = round(totalPaid, 2)
 print("total amount paid is", totalPaid, "and it was paid over",monthCounter,"months")
