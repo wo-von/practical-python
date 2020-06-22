@@ -7,7 +7,7 @@ def portfolio_cost(filename):
     returns the total cost for buying them all
     has a header which should be nexed
     '''
-    with open('Work/Data/portfolio.csv', 'rt') as f:
+    with open(f'Work/{filename}', 'rt') as f:
         header = next(f)
         stockData = []
         for line in f:
