@@ -3,6 +3,7 @@
 # Exercise 1.27
 
 import csv
+import sys
 
 def portfolio_cost(filename):
     '''gets a csv file of the shares, their qunatity and value
@@ -25,5 +26,11 @@ def portfolio_cost(filename):
             continue
     return totalCost
 
-cost = portfolio_cost('Data/portfolio.csv')
+# argv are the argumentsa passed through the terminal, a list of strings, depending on how many have been passed
+if len(sys.argv) == 2:
+    filename = sys.argv[1]
+else:
+    filename = 'Data/portfolio.csv'
+
+cost = portfolio_cost(filename)
 print('Total cost:', cost)
