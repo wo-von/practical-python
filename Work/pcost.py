@@ -22,8 +22,8 @@ def portfolio_cost(filename):
     for item in stockData:
         try:
             totalCost += int(item[1]) * float(item[2])
-        except:
-            continue
+        except ValueError:
+            print("bad row", item)
     return totalCost
 
 # argv are the argumentsa passed through the terminal, a list of strings, depending on how many have been passed
