@@ -3,34 +3,25 @@
 # Exercise 2.4
 
 import csv
+import sys
 
-def portfolio_cost(filename):
-    '''gets a csv file of the shares, their qunatity and value
-    returns the total cost for buying them all
-    has a header which should be nexted
+def read_portfolio(filename):
     '''
-    # it is assumed that we are in the Work directory
+    opens a given portfolio file and reads it into a list of tuples
+    '''
     with open(filename) as f:
+        portfolio = []
         rows = csv.reader(f)
-        header = next(f)
-        stockData = []
-        for line in rows:
-            # csv reader does much of the stuff itself, no need to manually do them
-            # line = line.strip()
-            stockData.append(line)
-    totalCost = 0
-    for item in stockData:
-        try:
-            totalCost += int(item[1]) * float(item[2])
-        except ValueError:
-            print("bad row", item)
-    return totalCost
+        headers = next(rows)
+        # print(headers)
+        for row in rows:
+            # print(row)
+            holding = row[0], int(row[1]), float(row[2])
+            portfolio.append(holding)
+    return portfolio
 
 # argv are the argumentsa passed through the terminal, a list of strings, depending on how many have been passed
 if len(sys.argv) == 2:
     filename = sys.argv[1]
 else:
     filename = 'Data/portfolio.csv'
-
-cost = portfolio_cost(filename)
-print('Total cost:', cost)
