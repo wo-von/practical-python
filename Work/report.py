@@ -4,6 +4,7 @@
 
 import csv
 import sys
+from pprint import pprint
 
 def read_portfolio(filename):
     '''
@@ -24,6 +25,19 @@ def read_portfolio(filename):
             portfolio.append(holding)
     return portfolio
 
+def read_prices(filename = 'Data/prices.csv'):
+    '''
+    reads a set of prices such as this into a dictionary where the keys of the dictionary are the stock names and the values in the dictionary are the stock prices.
+    '''
+    with open(filename) as f:
+        rows = csv.reader(f)
+        priceDict = {}
+        try:
+            for row in rows:
+                priceDict[row[0]] = float(row[1]) 
+        except IndexError:
+            pass
+    return priceDict
 # argv are the argumentsa passed through the terminal, a list of strings, depending on how many have been passed
 if len(sys.argv) == 2:
     filename = sys.argv[1]
