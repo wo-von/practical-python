@@ -6,7 +6,7 @@ import csv
 import sys
 from pprint import pprint
 
-def read_portfolio(filename):
+def read_portfolio(filename = 'Data/portfolio.csv'):
     '''
     opens a given portfolio file and reads it into a list of dictionaries
     '''
@@ -43,3 +43,12 @@ if len(sys.argv) == 2:
     filename = sys.argv[1]
 else:
     filename = 'Data/portfolio.csv'
+
+gainLoss = 0
+portfolio = read_portfolio()
+prices = read_prices()
+for myShares in portfolio:
+    if myShares['name'] in prices:
+        # print(myShares['name'])
+        # print(prices[myShares['name']])
+        gainLoss += (myShares['shares'] * (myShares['price'] - prices[myShares['name']]))
