@@ -43,8 +43,6 @@ def make_report(stockList, priceDic):
     '''
     takes a list of stocks and dictionary of prices as input and returns a list of tuples containing the rows of the form
       Name     Shares      Price     Change
----------- ---------- ---------- ----------
-        AA        100       9.22     -22.98
     '''
     report = []
     for item in stockList:
@@ -74,5 +72,5 @@ gainLoss = round((whatIHad- currentValue), 2)
 print("Current value of the portfolio", currentValue, "with gain/loss of", gainLoss)
 
 report = make_report(portfolio, prices)
-for r in report:
-    print(f'%10s %10d %10.2f %10.2f' % r)
+for name, shares, price, change in report:
+    print(f'{name:>10s} {shares:>10d} {price:>10.2f} {change:>10.2f}')
