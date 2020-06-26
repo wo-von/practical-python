@@ -7,7 +7,7 @@ import sys
 
 def read_portfolio(filename):
     '''
-    opens a given portfolio file and reads it into a list of tuples
+    opens a given portfolio file and reads it into a list of dictionaries
     '''
     with open(filename) as f:
         portfolio = []
@@ -16,7 +16,10 @@ def read_portfolio(filename):
         # print(headers)
         for row in rows:
             # print(row)
-            holding = row[0], int(row[1]), float(row[2])
+            holding = {}
+            holding['name'] = row[0]
+            holding['shares'] = int(row[1])
+            holding['price'] = float(row[2])
             portfolio.append(holding)
     return portfolio
 
