@@ -20,9 +20,6 @@ def read_portfolio(filename = 'Data/portfolio.csv'):
             # print(row)
             holding = {}
             holding.update({'name': row[0], 'shares': int(row[1]), 'price' : float(row[2])})
-            holding['name'] = row[0]
-            holding['shares'] = int(row[1])
-            holding['price'] = float(row[2])
             portfolio.append(holding)
     return portfolio
 
