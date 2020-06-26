@@ -76,4 +76,5 @@ print(f'{10*"-"} {10*"-"} {10*"-"} {10*"-"}')
 
 report = make_report(portfolio, prices)
 for name, shares, price, change in report:
-    print(f'{name:>10s} {shares:>10d} {price:>10.2f} {change:>10.2f}')
+    price = "$" + str(price)
+    print(f'{name:>10s} {shares:>10d} {price:>10s} {change:>10.2f}')
