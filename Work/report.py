@@ -66,7 +66,13 @@ for myShares in portfolio:
     if myShares['name'] in prices:
         currentValue += myShares['shares'] * prices[myShares['name']]
 gainLoss = round((whatIHad- currentValue), 2)
-print("Current value of the portfolio", currentValue, "with gain/loss of", gainLoss)
+# print("Current value of the portfolio", currentValue, "with gain/loss of", gainLoss)
+# in 2.11 we assume we have this tuple
+headers = ('Name', 'Shares', 'Price', 'Change')
+
+print(f'{headers[0]:>10s} {headers[1]:>10s} {headers[2]:>10s} {headers[3]:>10s}')
+
+print(f'{10*"-"} {10*"-"} {10*"-"} {10*"-"}')
 
 report = make_report(portfolio, prices)
 for name, shares, price, change in report:
