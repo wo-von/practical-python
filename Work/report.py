@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # report.py
 #
 # Exercise 2.4
@@ -74,4 +75,4 @@ print("Current value of the portfolio", currentValue, "with gain/loss of", gainL
 
 report = make_report(portfolio, prices)
 for r in report:
-    print(r)
+    print(f'%10s %10d %10.2f %10.2f' % r)
