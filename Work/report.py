@@ -38,6 +38,19 @@ def read_prices(filename = 'Data/prices.csv'):
         except IndexError:
             pass
     return priceDict
+def make_report(stockList, priceDic):
+    '''
+    takes a list of stocks and dictionary of prices as input and returns a list of tuples containing the rows of the form
+      Name     Shares      Price     Change
+---------- ---------- ---------- ----------
+        AA        100       9.22     -22.98
+    '''
+    report = []
+    for item in stockList:
+        if item['name'] in priceDic:
+            report.append((item['name'], item['shares'], priceDic[item['name']], round(priceDic[item['name']] - item['price'], 2)))
+    return report
+
 # argv are the argumentsa passed through the terminal, a list of strings, depending on how many have been passed
 if len(sys.argv) == 2:
     filename = sys.argv[1]
@@ -58,3 +71,7 @@ for myShares in portfolio:
         currentValue += myShares['shares'] * prices[myShares['name']]
 gainLoss = round((whatIHad- currentValue), 2)
 print("Current value of the portfolio", currentValue, "with gain/loss of", gainLoss)
+
+report = make_report(portfolio, prices)
+for r in report:
+    print(r)
