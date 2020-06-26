@@ -45,10 +45,16 @@ else:
     filename = 'Data/portfolio.csv'
 
 gainLoss = 0
+currentValue = 0
+whatIHad = 0
 portfolio = read_portfolio()
 prices = read_prices()
 for myShares in portfolio:
+    whatIHad += myShares['shares'] * myShares['price']
+
+for myShares in portfolio:
+    # only get the prices, if we have them
     if myShares['name'] in prices:
-        # print(myShares['name'])
-        # print(prices[myShares['name']])
-        gainLoss += (myShares['shares'] * (myShares['price'] - prices[myShares['name']]))
+        currentValue += myShares['shares'] * prices[myShares['name']]
+gainLoss = round((whatIHad- currentValue), 2)
+print("Current value of the portfolio", currentValue, "with gain/loss of", gainLoss)
