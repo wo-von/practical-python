@@ -19,11 +19,11 @@ def portfolio_cost(filename):
             # line = line.strip()
             stockData.append(line)
     totalCost = 0
-    for item in stockData:
+    for i, item in enumerate(stockData):
         try:
             totalCost += int(item[1]) * float(item[2])
         except ValueError:
-            print("bad row", item)
+            print("Row", i, "could not convert", item)
     return totalCost
 
 # argv are the argumentsa passed through the terminal, a list of strings, depending on how many have been passed
