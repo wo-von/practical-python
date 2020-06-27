@@ -12,18 +12,18 @@ def portfolio_cost(filename):
     '''
     with open(f'Work/{filename}') as f:
         rows = csv.reader(f)
-        header = next(f)
-        stockData = []
-        for line in rows:
-            # csv reader does much of the stuff itself, no need to manually do them
-            # line = line.strip()
-            stockData.append(line)
-    totalCost = 0
-    for i, item in enumerate(stockData):
-        try:
-            totalCost += int(item[1]) * float(item[2])
-        except ValueError:
-            print("Row", i, "could not convert", item)
+        headers = next(rows)
+        totalCost = 0
+        for rowno, row in enumerate(rows, start=1):
+            record = dict(zip(headers, row))
+            print(record)
+            try:
+                # totalCost += int(item[1]) * float(item[2])
+                nshares = int(record['shares'])
+                price = float(record['price'])
+                totalCost += nshares * price
+            except ValueError:
+                print("Row", rowno, "could not convert", row)
     return totalCost
 
 # argv are the argumentsa passed through the terminal, a list of strings, depending on how many have been passed
