@@ -20,7 +20,6 @@ def read_portfolio(filename = 'Data/portfolio.csv'):
             holding['shares'] = int(holding['shares'])
             holding['price'] = float(holding['price'])
             portfolio.append(holding)
-    print(portfolio)
     return portfolio
 
 def read_prices(filename = 'Data/prices.csv'):
