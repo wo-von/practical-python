@@ -35,6 +35,7 @@ def read_prices(filename = 'Data/prices.csv'):
         except IndexError:
             pass
     return priceDict
+
 def make_report(stockList, priceDic):
     '''
     takes a list of stocks and dictionary of prices as input and returns a list of tuples containing the rows of the form
