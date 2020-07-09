@@ -7,7 +7,7 @@ import csv
 import sys
 from pprint import pprint
 
-def read_portfolio(filename = 'Data/portfolio.csv'):
+def read_portfolio(filename: str = 'Data/portfolio.csv') ->list:
     '''
     opens a given portfolio file and reads it into a list of dictionaries
     '''
@@ -22,7 +22,7 @@ def read_portfolio(filename = 'Data/portfolio.csv'):
             portfolio.append(holding)
     return portfolio
 
-def read_prices(filename = 'Data/prices.csv'):
+def read_prices(filename: str = 'Data/prices.csv') -> dict:
     '''
     reads a set of prices such as this into a dictionary where the keys of the dictionary are the stock names and the values in the dictionary are the stock prices.
     '''
@@ -36,7 +36,7 @@ def read_prices(filename = 'Data/prices.csv'):
             pass
     return priceDict
 
-def make_report(stockList, priceDic):
+def make_report(stockList: list, priceDic: dict) -> list:
     '''
     takes a list of stocks and dictionary of prices as input and returns a list of tuples containing the rows of the form
       Name     Shares      Price     Change
