@@ -3,7 +3,7 @@
 # Exercise 3.3
 import csv
 
-def parse_csv(filename, select=None):
+def parse_csv(filename, select = None, types = None):
     '''
     reads a csv file into a 
     '''
@@ -23,6 +23,8 @@ def parse_csv(filename, select=None):
                 continue
             if indices:
                 row = [row[index] for index in indicesz]
+            if types:
+                row = [func(value) for func, value in zip(types, row)]
             record = dict(zip(headers, row))
             records.append(record)
     return records
