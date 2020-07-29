@@ -16,7 +16,6 @@ def portfolio_cost(filename):
         totalCost = 0
         for rowno, row in enumerate(rows, start=1):
             record = dict(zip(headers, row))
-            print(record)
             try:
                 # totalCost += int(item[1]) * float(item[2])
                 nshares = int(record['shares'])
@@ -26,7 +25,7 @@ def portfolio_cost(filename):
                 print("Row", rowno, "could not convert", row)
     return totalCost
 
-# argv are the argumentsa passed through the terminal, a list of strings, depending on how many have been passed
+# argv are the arguments passed through the terminal, a list of strings, depending on how many have been passed
 if len(sys.argv) == 2:
     filename = sys.argv[1]
 else:
