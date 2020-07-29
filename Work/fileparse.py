@@ -23,7 +23,7 @@ def parse_csv(filename, select = None, types = None, has_headers = True, delimit
                 continue
             if has_headers:
                 if indices:
-                    row = [row[index] for index in indicesz]
+                    row = [row[index] for index in indices]
             if types:
                 row = [func(value) for func, value in zip(types, row)]
             if has_headers:
