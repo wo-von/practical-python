@@ -7,19 +7,19 @@ import csv
 import sys
 from pprint import pprint
 
-def read_portfolio(filename: str = 'Data/portfolio.csv') ->list:
+def read_portfolio(filename: str = 'Data/portfolio.csv') -> list:
     '''
     opens a given portfolio file and reads it into a list of dictionaries
     '''
+    select = ['name', 'shares', 'price']
+    operator = [str, int, float]
     with open(filename) as f:
         portfolio = []
         rows = csv.reader(f)
         headers = next(rows)
-        for row in rows:
-            holding = dict(zip(headers, row))
-            holding['shares'] = int(holding['shares'])
-            holding['price'] = float(holding['price'])
-            portfolio.append(holding)
+        indices = [headers.index(s) for s in select]
+        
+        portfolio = [{col:func(row[index]) for col, func, index in zip(select, operator, indices)} for row in rows]
     return portfolio
 
 def read_prices(filename: str = 'Data/prices.csv') -> dict:
@@ -47,11 +47,17 @@ def make_report(stockList: list, priceDic: dict) -> list:
             report.append((item['name'], item['shares'], priceDic[item['name']], round(priceDic[item['name']] - item['price'], 2)))
     return report
 
-# argv are the argumentsa passed through the terminal, a list of strings, depending on how many have been passed
-if len(sys.argv) == 2:
-    filename = sys.argv[1]
-else:
-    filename = 'Data/portfolio.csv'
+def setPortfolioFile():
+    '''
+    If filename has been passed through teminal, pass it, if not, use default
+    '''
+    if len(sys.argv) == 2:
+        filename = sys.argv[1]
+    else:
+        filename = 'Data/portfolio.csv'
+
+# Not sure if this is the correct way to start a program
+setPortfolioFile()
 
 gainLoss = 0
 currentValue = 0
