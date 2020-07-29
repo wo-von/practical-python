@@ -63,7 +63,6 @@ def portfolio_report(portfoliofile: str, pricesfile: str):
     get the filenames for portfolio and prices and trigger are computations and 
     prints out the report
     '''
-
     portfolio = read_portfolio(portfoliofile)
     prices = read_prices(pricesfile)
     report = make_report(portfolio, prices)
