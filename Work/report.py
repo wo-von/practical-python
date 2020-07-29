@@ -7,7 +7,7 @@ import csv
 import sys
 from pprint import pprint
 
-def read_portfolio(filename: str = 'Data/portfolio.csv') -> list:
+def read_portfolio(filename: str) -> list:
     '''
     opens a given portfolio file and reads it into a list of dictionaries
     '''
@@ -22,7 +22,7 @@ def read_portfolio(filename: str = 'Data/portfolio.csv') -> list:
         portfolio = [{col:fun(row[ind]) for col, fun, ind in zip(select, type, indices)} for row in rows]
     return portfolio
 
-def read_prices(pricesfilename: str = 'Data/prices.csv') -> dict:
+def read_prices(pricesfilename: str) -> dict:
     '''
     reads a set of prices such as this into a dictionary where the keys of the dictionary are the stock names and the values in the dictionary are the stock prices.
     '''
@@ -58,12 +58,15 @@ def print_report(report: list):
     for row in report:
         print('%10s %10d %10.2f %10.2f' % row)
 
-if len(sys.argv) == 2:
-    filename = sys.argv[1]
-else:
-    filename = 'Data/portfolio.csv'
+def portfolio_report(portfoliofile: str, pricesfile: str):
+    '''
+    get the filenames for portfolio and prices and trigger are computations and 
+    prints out the report
+    '''
 
-portfolio = read_portfolio(filename)
-prices = read_prices()
-report = make_report(portfolio, prices)
-print_report(report)
+    portfolio = read_portfolio(portfoliofile)
+    prices = read_prices(pricesfile)
+    report = make_report(portfolio, prices)
+    print_report(report)
+
+portfolio_report('Data/portfolio.csv', 'Data/prices.csv')
