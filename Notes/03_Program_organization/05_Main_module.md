@@ -124,7 +124,7 @@ This list of text strings is found in `sys.argv`.
 
 ```python
 # In the previous bash command
-sys.argv # ['report.py, 'portfolio.csv', 'prices.csv']
+sys.argv # ['report.py', 'portfolio.csv', 'prices.csv']
 ```
 
 Here is a simple example of processing the arguments:
