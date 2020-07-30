@@ -16,10 +16,14 @@ def portfolio_cost(filename):
     return sum(s['shares'] * s['price'] for s in portfolio)
 
 # argv are the arguments passed through the terminal, a list of strings, depending on how many have been passed
-if len(sys.argv) == 2:
-    filename = sys.argv[1]
-else:
-    filename = 'Data/portfolio.csv'
+def main(args):
+    '''
+    main function, gets commans line arguments are arguments
+    '''
+    cost = portfolio_cost(args[1])
+    print('Total cost:', cost)
 
-cost = portfolio_cost(filename)
-print('Total cost:', cost)
+if __name__ == '__main__':
+    if len(sys.argv) != 2:
+        raise SystemExit(f'usage {sys.argv[0]} portfile')
+    main(sys.argv)
