@@ -7,34 +7,21 @@ import csv
 import sys
 from pprint import pprint
 
+from fileparse import parse_csv
+
 def read_portfolio(filename: str) -> list:
     '''
     opens a given portfolio file and reads it into a list of dictionaries
-    '''
-    select = ['name', 'shares', 'price']
-    type = [str, int, float]
-    with open(filename) as f:
-        portfolio = []
-        rows = csv.reader(f)
-        headers = next(rows)
-        indices = [headers.index(s) for s in select]
-        
-        portfolio = [{col:fun(row[ind]) for col, fun, ind in zip(select, type, indices)} for row in rows]
+    '''    
+    portfolio = parse_csv(filename, select = ['name', 'shares', 'price'], types = [str, int, float])
     return portfolio
 
 def read_prices(pricesfilename: str) -> dict:
     '''
     reads a set of prices such as this into a dictionary where the keys of the dictionary are the stock names and the values in the dictionary are the stock prices.
-    '''
-    with open(pricesfilename) as f:
-        rows = csv.reader(f)
-        priceDict = {}
-        try:
-            for row in rows:
-                priceDict[row[0]] = float(row[1]) 
-        except IndexError:
-            pass
-    return priceDict
+    ''' 
+    priceDict = parse_csv(pricesfilename, types = [str, float], has_headers = False)
+    return dict(priceDict)
 
 def make_report(stockList: list, priceDic: dict) -> list:
     '''

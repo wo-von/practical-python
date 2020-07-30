@@ -5,24 +5,19 @@
 import csv
 import sys
 
+import fileparse
+
 def portfolio_cost(filename):
     '''gets a csv file of the shares, their qunatity and value
     returns the total cost for buying them all
     has a header which should be nexted
     '''
-    with open(f'Work/{filename}') as f:
-        rows = csv.reader(f)
-        headers = next(rows)
-        totalCost = 0
-        for rowno, row in enumerate(rows, start=1):
-            record = dict(zip(headers, row))
-            try:
-                # totalCost += int(item[1]) * float(item[2])
-                nshares = int(record['shares'])
-                price = float(record['price'])
-                totalCost += nshares * price
-            except ValueError:
-                print("Row", rowno, "could not convert", row)
+    
+    
+    portfolio = fileparse.parse_csv(filename, select = ['shares', 'price'], types = [int, float])
+    totalCost = 0.0
+    for port in portfolio:
+        totalCost += port['shares'] * port['price']
     return totalCost
 
 # argv are the arguments passed through the terminal, a list of strings, depending on how many have been passed
