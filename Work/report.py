@@ -13,14 +13,16 @@ def read_portfolio(filename: str) -> list:
     '''
     opens a given portfolio file and reads it into a list of dictionaries
     '''    
-    portfolio = parse_csv(filename, select = ['name', 'shares', 'price'], types = [str, int, float])
+    with open(filename) as f:
+        portfolio = parse_csv(f, select = ['name', 'shares', 'price'], types = [str, int, float])
     return portfolio
 
 def read_prices(pricesfilename: str) -> dict:
     '''
     reads a set of prices such as this into a dictionary where the keys of the dictionary are the stock names and the values in the dictionary are the stock prices.
     ''' 
-    priceDict = parse_csv(pricesfilename, types = [str, float], has_headers = False)
+    with open(pricesfilename) as f:
+        priceDict = parse_csv(f, types = [str, float], has_headers = False)
     return dict(priceDict)
 
 def make_report(stockList: list, priceDic: dict) -> list:
