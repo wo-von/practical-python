@@ -19,10 +19,9 @@ def portfolio_cost(filename):
 # argv are the arguments passed through the terminal, a list of strings, depending on how many have been passed
 def main(args):
     '''
-    main function, gets commans line arguments are arguments
+    main function, gets command line arguments
     '''
-    cost = portfolio_cost(args[1])
-    print('Total cost:', cost)
+    print('Total cost:', portfolio_cost(args[1]))
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:

@@ -8,7 +8,7 @@ import csv
 import sys
 from pprint import pprint
 #-- Practical python course libraries
-from fileparse import parse_csv
+import fileparse
 import stock
 
 def read_portfolio(filename: str) -> list:
@@ -16,7 +16,7 @@ def read_portfolio(filename: str) -> list:
     opens a given portfolio file and reads it into a list of Stock instances
     '''    
     with open(filename) as f:
-        portdict = parse_csv(f, select = ['name', 'shares', 'price'], types = [str, int, float])
+        portdict = fileparse.parse_csv(f, select = ['name', 'shares', 'price'], types = [str, int, float])
     return [stock.Stock(s['name'], s['shares'], s['price']) for s in portdict]
 
 def read_prices(pricesfilename: str) -> dict:
@@ -24,7 +24,7 @@ def read_prices(pricesfilename: str) -> dict:
     reads a set of prices such as this into a dictionary where the keys of the dictionary are the stock names and the values in the dictionary are the stock prices.
     ''' 
     with open(pricesfilename) as f:
-        priceDict = parse_csv(f, types = [str, float], has_headers = False)
+        priceDict = fileparse.parse_csv(f, types = [str, float], has_headers = False)
     return dict(priceDict)
 
 def make_report(stockList: list, priceDic: dict) -> list:
