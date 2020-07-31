@@ -2,9 +2,10 @@
 #
 # Exercise 1.27
 
+#-- Standard library
 import csv
 import sys
-
+#-- Practical python course libraries
 import report
 
 def portfolio_cost(filename):

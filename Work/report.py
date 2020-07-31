@@ -3,10 +3,11 @@
 #
 # Exercise 2.4
 
+#-- Standard library
 import csv
 import sys
 from pprint import pprint
-
+#-- Practical python course libraries
 from fileparse import parse_csv
 
 def read_portfolio(filename: str) -> list:
