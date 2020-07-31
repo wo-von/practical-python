@@ -14,7 +14,7 @@ def portfolio_cost(filename):
     has a header which should be nexted
     '''  
     portfolio = report.read_portfolio(filename)
-    return sum(s['shares'] * s['price'] for s in portfolio)
+    return sum(s.shares * s.price for s in portfolio)
 
 # argv are the arguments passed through the terminal, a list of strings, depending on how many have been passed
 def main(args):

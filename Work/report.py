@@ -9,14 +9,15 @@ import sys
 from pprint import pprint
 #-- Practical python course libraries
 from fileparse import parse_csv
+import stock
 
 def read_portfolio(filename: str) -> list:
     '''
-    opens a given portfolio file and reads it into a list of dictionaries
+    opens a given portfolio file and reads it into a list of Stock instances
     '''    
     with open(filename) as f:
-        portfolio = parse_csv(f, select = ['name', 'shares', 'price'], types = [str, int, float])
-    return portfolio
+        portdict = parse_csv(f, select = ['name', 'shares', 'price'], types = [str, int, float])
+    return [stock.Stock(s['name'], s['shares'], s['price']) for s in portdict]
 
 def read_prices(pricesfilename: str) -> dict:
     '''
@@ -33,8 +34,8 @@ def make_report(stockList: list, priceDic: dict) -> list:
     '''
     report = []
     for item in stockList:
-        if item['name'] in priceDic:
-            report.append((item['name'], item['shares'], priceDic[item['name']], round(priceDic[item['name']] - item['price'], 2)))
+        if item.name in priceDic:
+            report.append((item.name, item.shares, priceDic[item.name], round(priceDic[item.name] - item.price)))
     return report
 
 def print_report(report: list):

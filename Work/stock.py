@@ -6,6 +6,6 @@ class Stock(object):
         self.shares = shares
         self.price = price
     def cost(self):
-        print(self.price * self.shares)
+        return self.shares * self.price
     def sell(self, sold):
         self.shares -= sold
