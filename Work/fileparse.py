@@ -24,7 +24,7 @@ def parse_csv(filename, select = None, types = None, has_headers = True, delimit
         indices = []
     records = []
         
-    for n, row in enumerate(rows, start=1):
+    for n, row in enumerate(rows, start = 1):
         try:    
             if not row: # skip rows with no data
                 continue
