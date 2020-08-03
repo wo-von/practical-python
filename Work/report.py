@@ -30,13 +30,13 @@ def read_prices(pricesfilename: str) -> dict:
 
 def make_report(stockList: list, priceDic: dict) -> list:
     '''
-    takes a list of stocks and dictionary of prices as input and returns a list of tuples containing the rows of the form
-      Name     Shares      Price     Change
+    takes a list of Stocks instances and dictionary of prices as input and returns a list of tuples containing the rows of the form
+    Name     Shares      Price     Change
     '''
     report = []
     for item in stockList:
         if item.name in priceDic:
-            report.append((item.name, item.shares, priceDic[item.name], round(priceDic[item.name] - item.price)))
+            report.append((item.name, item.shares, priceDic[item.name], priceDic[item.name] - item.price))
     return report
 
 def print_report(report: list, formatter: object):
@@ -48,6 +48,7 @@ def print_report(report: list, formatter: object):
     for name, shares, price, change in report:
         rowdata = [name, str(shares), f'{price:0.2f}', f'{change:0.2f}']
         formatter.row(rowdata)
+
 def portfolio_report(portfoliofile: str, pricesfile: str):
     '''
     get the filenames for portfolio and prices and trigger are computations and 
@@ -56,10 +57,12 @@ def portfolio_report(portfoliofile: str, pricesfile: str):
     # Read data files
     portfolio = read_portfolio(portfoliofile)
     prices = read_prices(pricesfile)
+
     # Create the report data
     report = make_report(portfolio, prices)
+    
     # print it out
-    formatter = tableformat.Tableformatter()
+    formatter = tableformat.HTMLTableFormatter()
     print_report(report, formatter)
 
 def main(args):
