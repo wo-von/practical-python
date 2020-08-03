@@ -61,3 +61,11 @@ def create_formatter(format):
         return HTMLTableFormatter()
     else:
         raise RuntimeError(f'unknown formatting {format}')
+
+def print_table(portfolio, select, formatter):
+    formatter.headings(select)
+    for p in portfolio:
+        rows = []
+        for s in select:
+            rows.append(str(getattr(p, s, None)))
+        formatter.row(rows)
