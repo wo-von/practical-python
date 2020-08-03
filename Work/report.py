@@ -10,6 +10,7 @@ from pprint import pprint
 #-- Practical python course libraries
 import fileparse
 import stock
+import tableformat
 
 def read_portfolio(filename: str) -> list:
     '''
@@ -38,26 +39,29 @@ def make_report(stockList: list, priceDic: dict) -> list:
             report.append((item.name, item.shares, priceDic[item.name], round(priceDic[item.name] - item.price)))
     return report
 
-def print_report(report: list):
+def print_report(report: list, formatter: object):
     '''
-    prints out the report
+    prints out the report from a list of (name, shares, price, change)
+    tuples
     '''
-    headers = ('Name', 'Shares', 'Price', 'Change')
-
-    print('%10s %10s %10s %10s' % headers)
-    print(('-' * 10 + ' ') * len(headers))
-    for row in report:
-        print('%10s %10d %10.2f %10.2f' % row)
-
+    formatter.headings(['Name', 'Shares', 'Price', 'Change'])
+    for name, shares, price, change in report:
+        rowdata = [name, str(shares), f'{price:0.2f}', f'{change:0.2f}']
+        formatter.row(rowdata)
 def portfolio_report(portfoliofile: str, pricesfile: str):
     '''
     get the filenames for portfolio and prices and trigger are computations and 
     prints out the report
     '''
+    # Read data files
     portfolio = read_portfolio(portfoliofile)
     prices = read_prices(pricesfile)
+    # Create the report data
     report = make_report(portfolio, prices)
-    print_report(report)
+    # print it out
+    formatter = tableformat.Tableformatter()
+    print_report(report, formatter)
+
 def main(args):
     portfolio_report(args[1], args[2])
 

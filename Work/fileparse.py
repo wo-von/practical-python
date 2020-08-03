@@ -4,7 +4,7 @@
 #-- Standard library
 import csv
 
-def parse_csv(filename, select = None, types = None, has_headers = True, delimiter = ',', silence_errors = False):
+def parse_csv(filename, select = None, types = None, has_headers = True, delimiter = ',', silence_errors = False) -> dict:
     '''
     reads a csv iterable into a dictionary (in case there are headers) or into a tuple with raw files. The iterable should be opened and passed by the caller
     '''
