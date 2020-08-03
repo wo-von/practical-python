@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 class Stock(object):
+    __slots__ = ('name', '_shares', 'price')
     def __init__(self, name, shares, price):
         self.name = name
         self.shares = shares
