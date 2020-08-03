@@ -49,10 +49,10 @@ def print_report(report: list, formatter: object):
         rowdata = [name, str(shares), f'{price:0.2f}', f'{change:0.2f}']
         formatter.row(rowdata)
 
-def portfolio_report(portfoliofile: str, pricesfile: str):
+def portfolio_report(portfoliofile: str, pricesfile: str, fmt = 'html'):
     '''
-    get the filenames for portfolio and prices and trigger are computations and 
-    prints out the report
+    get the filenames for portfolio and prices and prepares the report and 
+    prints it out
     '''
     # Read data files
     portfolio = read_portfolio(portfoliofile)
@@ -62,7 +62,7 @@ def portfolio_report(portfoliofile: str, pricesfile: str):
     report = make_report(portfolio, prices)
     
     # print it out
-    formatter = tableformat.HTMLTableFormatter()
+    formatter = tableformat.create_formatter(fmt)
     print_report(report, formatter)
 
 def main(args):
