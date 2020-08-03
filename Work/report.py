@@ -66,9 +66,12 @@ def portfolio_report(portfoliofile: str, pricesfile: str, fmt = 'html'):
     print_report(report, formatter)
 
 def main(args):
-    portfolio_report(args[1], args[2])
+    if len(args) == 3:
+        portfolio_report(portfoliofile = args[1], pricesfile = args[2])
+    else:
+        portfolio_report(portfoliofile = args[1], pricesfile = args[2], fmt = args[3])
 
 if __name__ == '__main__':
-    if len(sys.argv) != 3:
-        raise SystemExit(f'usage {sys.argv[0]} portfile pricefile')
+    if len(sys.argv) not in {3, 4}:
+        raise SystemExit(f'usage {sys.argv[0]} portfile pricefile {{format}}')
     main(sys.argv)
