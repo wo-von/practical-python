@@ -13,12 +13,12 @@ class TableFormatter(object):
         '''
         Emit table headings
         '''
-    raise NotImplementedError()
+        raise NotImplementedError()
     def row(self, rowdata):
         '''
         Emit a single row of table data
         '''
-    raise NotImplementedError()
+        raise NotImplementedError()
 
 class TextTableFormatter(TableFormatter):
     '''
