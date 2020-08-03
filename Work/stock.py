@@ -5,6 +5,7 @@ class Stock(object):
         self.name = name
         self.shares = shares
         self.price = price
+    @property
     def cost(self):
         return self.shares * self.price
     def sell(self, sold):
