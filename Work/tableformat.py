@@ -68,7 +68,5 @@ def create_formatter(format):
 def print_table(portfolio, select, formatter):
     formatter.headings(select)
     for p in portfolio:
-        rows = []
-        for s in select:
-            rows.append(str(getattr(p, s, None)))
-        formatter.row(rows)
+        rows = [ str(getattr(p, s, None)) for s in select ]
+        formatter.row(rows)       
