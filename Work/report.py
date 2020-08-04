@@ -9,8 +9,9 @@ import sys
 from pprint import pprint
 #-- Practical python course libraries
 import fileparse
-import stock
+from stock import Stock
 import tableformat
+from portfolio import Portfolio
 
 def read_portfolio(filename: str) -> list:
     '''
@@ -18,7 +19,8 @@ def read_portfolio(filename: str) -> list:
     '''    
     with open(filename) as f:
         portdict = fileparse.parse_csv(f, select = ['name', 'shares', 'price'], types = [str, int, float])
-    return [stock.Stock(s['name'], s['shares'], s['price']) for s in portdict]
+    portfolio = [ Stock(s['name'], s['shares'], s['price']) for s in portdict ]
+    return Portfolio(portfolio)
 
 def read_prices(pricesfilename: str) -> dict:
     '''

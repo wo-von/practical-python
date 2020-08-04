@@ -7,6 +7,7 @@ import csv
 import sys
 #-- Practical python course libraries
 import report
+import portfolio
 
 def portfolio_cost(filename):
     '''gets a csv file of the shares, their qunatity and value
@@ -14,7 +15,7 @@ def portfolio_cost(filename):
     has a header which should be nexted
     '''  
     portfolio = report.read_portfolio(filename)
-    return sum(s.cost for s in portfolio)
+    return portfolio.total_cost
 
 # argv are the arguments passed through the terminal, a list of strings, depending on how many have been passed
 def main(args):

@@ -4,9 +4,9 @@
 #-- Standard library
 import csv
 
-def parse_csv(filename, select = None, types = None, has_headers = True, delimiter = ',', silence_errors = False) -> dict:
+def parse_csv(filename, select = None, types = None, has_headers = True, delimiter = ',', silence_errors = False) -> list:
     '''
-    reads a csv iterable into a dictionary (in case there are headers) or into a tuple with raw files. The iterable should be opened and passed by the caller
+    reads a csv iterable into a list of dictionaries (in case there are headers) or into a tuple with raw files. The iterable should be opened and passed by the caller
     '''
     if select != None and has_headers == False:
         raise RuntimeError("select argument requires column headers")
