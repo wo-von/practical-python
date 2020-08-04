@@ -20,4 +20,4 @@ class Stock(object):
     def sell(self, sold):
         self.shares -= sold
     def __repr__(self):
-        return f'Stock({self.name}, {self.shares}, {self.price})'
+        return f'Stock({self.name!r}, {self.shares!r}, {self.price!r})'
