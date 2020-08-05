@@ -29,4 +29,4 @@ def ticker(portfile, logfile, fmt):
     formatter = tableformat.create_formatter(fmt)
     formatter.headings(headers)
     for row in rows:
-        formatter.row([ str(e) for e in row.values()])
+        formatter.row([ row['name'], f"{row['price']:0.2f}", f"{row['change']:0.2f}"])
