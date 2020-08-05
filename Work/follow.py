@@ -4,8 +4,15 @@
 # Ex6.5
 ##--
 
+##--
+# Standard library imports
+##---
 import os
 import time
+##--
+# local imports
+##--
+import report
 
 def follow(filename):
     f = open(filename)
@@ -18,12 +25,14 @@ def follow(filename):
     f.close()
 
 if __name__ == '__main__':
+
     portfolio = report.read_portfolio('Data/portfolio.csv')
+
     for line in follow('Data/stocklog.csv'):
         fields = line.split(',')
         name = fields[0].strip('"')
         price = float(fields[1])
         change = float(fields[4])
-        if change < 0:
+        if name in portfolio:
             print(f'{name:>10s} {price:>10.2f} {change:>10.2f}')
-                print(f'{name:>10s} {price:>10.2f} {change:>10.2f}')
+        
