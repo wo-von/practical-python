@@ -35,11 +35,7 @@ def make_report(stockList: list, priceDic: dict) -> list:
     takes a list of Stocks instances and dictionary of prices as input and returns a list of tuples containing the rows of the form
     Name     Shares      Price     Change
     '''
-    report = []
-    for item in stockList:
-        if item.name in priceDic:
-            report.append((item.name, item.shares, priceDic[item.name], priceDic[item.name] - item.price))
-    return report
+    return [(item.name, item.shares, priceDic[item.name], priceDic[item.name] - item.price) for item in stockList if item.name in priceDic]
 
 def print_report(report: list, formatter: object):
     '''
