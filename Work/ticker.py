@@ -9,6 +9,7 @@ import csv
 ##--
 from follow import follow
 import report
+import tableformat
 
 def select_columns(rows, indices):
     for row in rows:
@@ -37,9 +38,10 @@ def parse_stock_data(lines):
     rows = make_dicts(rows, ['name', 'price', 'change'])
     return rows
 
-if __name__ == '__main__':
-    portfolio = report.read_portfolio('Data/portfolio.csv')
-    rows = parse_stock_data(follow('Data/stocklog.csv'))
-    rows = filter_symbols(rows, portfolio)
+def ticker(portfile, logfile, fmt):
+    portfolio = report.read_portfolio(portfile)
+    rows = filter_symbols(parse_stock_data(follow(logfile)), portfolio)
+    formatter = tableformat.create_formatter(fmt)
+    formatter.headings(['name', 'price', 'change'])
     for row in rows:
-        print(row)
+        formatter.row([ str(e) for e in row.values()])
