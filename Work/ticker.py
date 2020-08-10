@@ -30,3 +30,12 @@ def ticker(portfile, logfile, fmt):
     formatter.headings(headers)
     for row in rows:
         formatter.row([ row['name'], f"{row['price']:0.2f}", f"{row['change']:0.2f}"])
+
+def main(args):
+    if len(args) != 4:
+        raise SystemExit('Usage: %s portfoliofile logfile fmt' % args[0])
+    ticker(args[1], args[2], args[3])
+
+if __name__ == '__main__':
+    import sys
+    main(sys.argv)
