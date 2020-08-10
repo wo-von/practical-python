@@ -20,6 +20,7 @@ def follow(filename):
     while True:
         line = f.readline()
         if line == '':
+            time.sleep(0.1)
             continue
         yield line
     f.close()
